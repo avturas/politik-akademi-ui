@@ -1,6 +1,12 @@
 .content-display {
     margin: auto;
     max-width: 1200px;
-    padding-bottom: 12px;
     padding: 24px;
+    padding-bottom: 96px;
+}
+
+:host {
+    height: calc(100% - 64px);
+    display: flex;
+    overflow: auto;
 }
