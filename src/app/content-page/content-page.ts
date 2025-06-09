@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MarkdownModule } from 'ngx-markdown';
 import { ContentMeta } from '../services/content.service';
 import { HttpClient } from '@angular/common/http';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   standalone: true,
@@ -16,7 +17,11 @@ export class ContentPage implements OnInit {
   slug = '';
   markdownUrl = '';
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   async ngOnInit() {
     this.slug = this.route.snapshot.paramMap.get('slug') || '';
@@ -29,6 +34,7 @@ export class ContentPage implements OnInit {
 
     if (matched) {
       this.markdownUrl = `https://raw.githubusercontent.com/avturas/politik-akademi-icerik/main/${matched.path}`;
+      this.cdr.detectChanges();
     }
   }
 }

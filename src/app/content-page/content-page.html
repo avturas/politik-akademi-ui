@@ -1,5 +1,11 @@
-<div class="content-display">
-  <article>
-    <markdown [src]="markdownUrl"></markdown>
-  </article>
-</div>
+<ng-container *ngIf="markdownUrl; else loading">
+  <div class="content-display">
+    <article>
+      <markdown [src]="markdownUrl"></markdown>
+    </article>
+  </div>
+</ng-container>
+
+<ng-template #loading>
+  <div class="loading-text">İçerik yükleniyor...</div>
+</ng-template>
