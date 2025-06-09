@@ -1,0 +1,22 @@
+<mat-form-field appearance="outline" class="search-field">
+  <mat-label>Ders veya konu ara</mat-label>
+  <input matInput [(ngModel)]="searchTerm" />
+</mat-form-field>
+
+<div *ngFor="let category of groupedContent">
+  <mat-card class="category-card">
+    <mat-card-header>
+      <mat-card-title>{{ category.category }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngFor="let mod of category.modules" class="module-block">
+        <h4>{{ mod.module }}</h4>
+        <ul>
+          <li *ngFor="let item of mod.items">
+            <a [routerLink]="['/ders', item.slug]"> {{ item.title }} </a>
+          </li>
+        </ul>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

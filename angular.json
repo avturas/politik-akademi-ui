@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "politika-akademi-ui": {
+    "politik-akademi-ui": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -27,6 +27,7 @@
               }
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.scss"
             ]
           },
@@ -58,10 +59,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "politika-akademi-ui:build:production"
+              "buildTarget": "politik-akademi-ui:build:production"
             },
             "development": {
-              "buildTarget": "politika-akademi-ui:build:development"
+              "buildTarget": "politik-akademi-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -81,11 +82,15 @@
               }
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.scss"
             ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "259a09ef-86ce-4582-bb08-9094d226ba31"
   }
 }

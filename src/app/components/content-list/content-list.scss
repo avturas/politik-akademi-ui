@@ -1,0 +1,33 @@
+:host {
+  display: block;
+  padding: 16px;
+}
+
+.search-field {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.category-card {
+  margin-bottom: 24px;
+}
+
+.item-list {
+  list-style-type: none;
+  padding-left: 16px;
+  margin: 0;
+}
+
+.list-item {
+  margin: 8px 0;
+}
+
+a {
+  text-decoration: none;
+  color: #1a237e;
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
+}
