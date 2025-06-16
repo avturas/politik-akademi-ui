@@ -3,6 +3,7 @@ import { ContentService, ContentMeta } from '../../services/content.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
@@ -19,6 +20,7 @@ import { MatDividerModule } from '@angular/material/divider';
     RouterModule,
     MatCardModule,
     MatDividerModule,
+    MatIconModule,
   ],
   styleUrl: './content-list.scss',
   templateUrl: './content-list.html',

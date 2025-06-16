@@ -7,10 +7,17 @@ html {
   @include mat.theme((
     color: (
       theme-type: light,
-      primary: mat.$azure-palette,
+      primary: mat.$green-palette,
       tertiary: mat.$blue-palette,
     ),
     typography: Roboto,
     density: 0,
+  ));
+  @include mat.card-overrides((
+    elevated-container-shape: 4px,
+    elevated-container-elevation: 0,
+  ));
+   @include mat.form-field-overrides((
+
   ));
 }
