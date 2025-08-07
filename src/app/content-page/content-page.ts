@@ -26,14 +26,14 @@ export class ContentPage implements OnInit {
   async ngOnInit() {
     this.slug = this.route.snapshot.paramMap.get('slug') || '';
     const indexUrl =
-      'https://raw.githubusercontent.com/avturas/politik-akademi-icerik/main/index.json';
+      'https://avturas.github.io/politik-akademi-icerik/index.json';
 
     const index = await this.http.get<ContentMeta[]>(indexUrl).toPromise();
 
     const matched = index?.find((item) => item.slug === this.slug);
 
     if (matched) {
-      this.markdownUrl = `https://raw.githubusercontent.com/avturas/politik-akademi-icerik/main/${matched.path}`;
+      this.markdownUrl = `https://avturas.github.io/politik-akademi-icerik/${matched.path}`;
       this.cdr.detectChanges();
     }
   }

@@ -1,12 +1,12 @@
 # 🏛️ Politik Akademi UI
 
-**Github'daki markdown tabanlı içerikleri anlık olarak çekip sade bir arayüzde gösteren Angular uygulaması**
+**GitHub Pages üzerinden sunulan markdown tabanlı içerikleri anlık olarak çekip sade bir arayüzde gösteren Angular uygulaması**
 
 ---
 
 ## 🎯 Amaç
 
-Bu uygulama, [politik-akademi-icerik](https://github.com/avturas/politik-akademi-icerik) adlı Github reposunda tutulan eğitim içeriklerini (Markdown formatında) kullanıcıya okunabilir ve erişilebilir bir arayüzle sunmak için geliştirilmiştir.
+Bu uygulama, [politik-akademi-icerik](https://github.com/avturas/politik-akademi-icerik) adlı GitHub reposunda tutulan eğitim içeriklerini (Markdown formatında) kullanıcıya okunabilir ve erişilebilir bir arayüzle sunmak için geliştirilmiştir.
 
 Kullanıcılar, içerikleri kategori ve modül bazında filtreleyerek çalışabilir.
 
@@ -14,38 +14,39 @@ Kullanıcılar, içerikleri kategori ve modül bazında filtreleyerek çalışab
 
 ## 🧱 Teknolojiler
 
-| Katman   | Teknoloji                     |
-| -------- | ----------------------------- |
-| Frontend | Angular 20                    |
-| UI Kit   | Angular Material              |
-| İçerik   | Markdown + Github Raw Content |
+| Katman   | Teknoloji                   |
+| -------- | --------------------------- |
+| Frontend | Angular 20                  |
+| UI Kit   | Angular Material            |
+| İçerik   | Markdown + GitHub Pages CDN |
 
 ---
 
 ## ⚙️ Özellikler
 
-- 📥 İçerikler doğrudan Github'dan (`raw.githubusercontent.com`) çekilir.
+- 📥 İçerikler doğrudan GitHub Pages üzerinden (CDN) çekilir:
+  `https://avturas.github.io/politik-akademi-icerik/`
 - 📚 Markdown dosyaları Angular içinde dinamik olarak işlenir.
 - 🔎 Kategori, modül ve başlığa göre filtreleme yapılabilir.
-- 🌐 Statik içerik yönetimi yerine içeriklerin merkezi olarak bir depoda tutulması sayesinde sade yapı.
+- 🧩 İçerik yönetimi UI’dan ayrılmıştır — merkezi ve sade yapı.
 
 ---
 
-## ⚠️ Github'dan İçerik Çekmenin Avantajları ve Yan Etkileri
+## ✅ Neden GitHub Pages Tabanlı CDN?
 
-### ✅ Avantajlar
+| Avantaj           | Açıklama                                                                                 |
+| ----------------- | ---------------------------------------------------------------------------------------- |
+| 📦 Dağıtımı kolay | Deploy etmeye gerek kalmadan sadece içerik repo güncellenerek tüm uygulamalar etkilenir. |
+| 🌍 Global erişim  | GitHub Pages üzerinden tüm dünyadan hızlı erişim.                                        |
 
-- **Güncel içerik**: İçeriklerde yapılan her güncelleme, kullanıcıya anında yansır.
-- **Merkezi kontrol**: İçerikler tek bir yerde (markdown repo) yönetilir; UI kodundan ayrı tutulur.
-- **Versiyonlama**: İçerik geçmişi Git ile takip edilebilir.
-- **Dağıtımı kolay**: CI/CD veya deploy süreçleri olmadan sadece içerik güncellenerek yayınlanabilir.
+---
 
-### ⚠️ Olası Yan Etkiler
+## ⚠️ Dikkat Edilmesi Gerekenler
 
-- **Yüklenme süresi**: Her sayfa açılışında Github üzerinden içerik çekildiği için ilk yükleme birkaç saniye sürebilir.
-- **İnternet gerekliliği**: İçeriklerin görüntülenebilmesi için aktif internet bağlantısı ve Github'a erişim gerekir.
-- **Rate limit**: Github API değil, raw içerikler kullanılsa da, çok sık istek gönderilmesi durumunda IP bazlı sınırlandırmalar olabilir.
-- **Güvenilirlik bağımlılığı**: Github tarafındaki repo yapısının veya `index.json` dosyasının bozulması, UI tarafında hatalara yol açabilir.
+- ⏳ **Yükleme süresi**: İçerik ilk defa çekiliyorsa CDN üzerinden birkaç saniye sürebilir.
+- 🌐 **İnternet gerekliliği**: İçeriklerin yüklenebilmesi için aktif bağlantı gerekir.
+- 🚦 **GitHub Pages limiti**: Çok yoğun istek altında (örn. DDOS durumlarında) bazı erişim kısıtlamaları oluşabilir.
+- 🔧 **Yapı bozulmaları**: `index.json` veya markdown yollarındaki hata, UI'da kırık sayfalara sebep olabilir.
 
 ---
 
@@ -66,21 +67,19 @@ Tarayıcıda [http://localhost:4200](http://localhost:4200) adresini açarak uyg
 
 ## 📁 İçerik Yapısı
 
-Uygulama, `politik-akademi-icerik` deposundaki `index.json` dosyasına göre içerikleri Github üzerinden çeker:
+Uygulama, `politik-akademi-icerik` deposundaki `index.json` dosyasına göre içerikleri CDN üzerinden çeker:
 
 ```json
-[
-  {
-    "title": "Siyaset Nedir?",
-    "slug": "01-siyaset-nedir",
-    "category": "Tarihi ve Kuramsal Temeller",
-    "module": "Siyasetin Temelleri",
-    "path": "tarihi-ve-kuramsal-temeller/siyasetin-temelleri/01-siyaset-nedir"
-  }
-]
+{
+  "title": "Yunan Polisleri ve Doğrudan Demokrasi Deneyimi",
+  "slug": "06-yunan-polisleri-ve-dogrudan-demoktasi-deneyimi",
+  "category": "Tarihi ve Kuramsal Temeller",
+  "module": "Siyasetin Tarihsel Temelleri ve Gucun Evrimi",
+  "path": "tarihi-ve-kuramsal-temeller/siyasetin-tarihsel-temelleri-ve-gucun-evrimi/06-yunan-polisleri-ve-dogrudan-demoktasi-deneyimi.md"
+}
 ```
 
-Bu yapı sayesinde UI tarafında her içerik otomatik olarak eşleşir ve gösterilir.
+UI uygulaması, bu `path` değerini `https://avturas.github.io/politik-akademi-icerik/` temeliyle birleştirerek içeriği yükler.
 
 ---
 
@@ -88,5 +87,3 @@ Bu yapı sayesinde UI tarafında her içerik otomatik olarak eşleşir ve göste
 
 Tüm içerikler [MIT Lisansı](LICENSE) kapsamında lisanslanmıştır.  
 **Not:** İçerikler tamamen ChatGPT tarafından oluşturulmuştur, hata veya eksiklikler içerebilir.
-
----

@@ -13,7 +13,7 @@ export interface ContentMeta {
 @Injectable({ providedIn: 'root' })
 export class ContentService {
   private indexUrl =
-    'https://raw.githubusercontent.com/avturas/politik-akademi-icerik/refs/heads/main/index.json';
+    'https://avturas.github.io/politik-akademi-icerik/index.json';
 
   constructor(private http: HttpClient) {}
 
