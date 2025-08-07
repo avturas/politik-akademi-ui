@@ -1,59 +1,92 @@
-# PolitikAkademiUi
+# 🏛️ Politik Akademi UI
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.1.
+**Github'daki markdown tabanlı içerikleri anlık olarak çekip sade bir arayüzde gösteren Angular uygulaması**
 
-## Development server
+---
 
-To start a local development server, run:
+## 🎯 Amaç
+
+Bu uygulama, [politik-akademi-icerik](https://github.com/avturas/politik-akademi-icerik) adlı Github reposunda tutulan eğitim içeriklerini (Markdown formatında) kullanıcıya okunabilir ve erişilebilir bir arayüzle sunmak için geliştirilmiştir.
+
+Kullanıcılar, içerikleri kategori ve modül bazında filtreleyerek çalışabilir.
+
+---
+
+## 🧱 Teknolojiler
+
+| Katman   | Teknoloji                     |
+| -------- | ----------------------------- |
+| Frontend | Angular 20                    |
+| UI Kit   | Angular Material              |
+| İçerik   | Markdown + Github Raw Content |
+
+---
+
+## ⚙️ Özellikler
+
+- 📥 İçerikler doğrudan Github'dan (`raw.githubusercontent.com`) çekilir.
+- 📚 Markdown dosyaları Angular içinde dinamik olarak işlenir.
+- 🔎 Kategori, modül ve başlığa göre filtreleme yapılabilir.
+- 🌐 Statik içerik yönetimi yerine içeriklerin merkezi olarak bir depoda tutulması sayesinde sade yapı.
+
+---
+
+## ⚠️ Github'dan İçerik Çekmenin Avantajları ve Yan Etkileri
+
+### ✅ Avantajlar
+
+- **Güncel içerik**: İçeriklerde yapılan her güncelleme, kullanıcıya anında yansır.
+- **Merkezi kontrol**: İçerikler tek bir yerde (markdown repo) yönetilir; UI kodundan ayrı tutulur.
+- **Versiyonlama**: İçerik geçmişi Git ile takip edilebilir.
+- **Dağıtımı kolay**: CI/CD veya deploy süreçleri olmadan sadece içerik güncellenerek yayınlanabilir.
+
+### ⚠️ Olası Yan Etkiler
+
+- **Yüklenme süresi**: Her sayfa açılışında Github üzerinden içerik çekildiği için ilk yükleme birkaç saniye sürebilir.
+- **İnternet gerekliliği**: İçeriklerin görüntülenebilmesi için aktif internet bağlantısı ve Github'a erişim gerekir.
+- **Rate limit**: Github API değil, raw içerikler kullanılsa da, çok sık istek gönderilmesi durumunda IP bazlı sınırlandırmalar olabilir.
+- **Güvenilirlik bağımlılığı**: Github tarafındaki repo yapısının veya `index.json` dosyasının bozulması, UI tarafında hatalara yol açabilir.
+
+---
+
+## 🚀 Kurulum
+
+Projeyi çalıştırmak için aşağıdaki adımları takip edin:
 
 ```bash
+git clone https://github.com/avturas/politik-akademi-ui.git
+cd politik-akademi-ui
+npm install
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Tarayıcıda [http://localhost:4200](http://localhost:4200) adresini açarak uygulamayı görüntüleyebilirsiniz.
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 📁 İçerik Yapısı
 
-```bash
-ng generate component component-name
+Uygulama, `politik-akademi-icerik` deposundaki `index.json` dosyasına göre içerikleri Github üzerinden çeker:
+
+```json
+[
+  {
+    "title": "Siyaset Nedir?",
+    "slug": "01-siyaset-nedir",
+    "category": "Tarihi ve Kuramsal Temeller",
+    "module": "Siyasetin Temelleri",
+    "path": "tarihi-ve-kuramsal-temeller/siyasetin-temelleri/01-siyaset-nedir"
+  }
+]
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Bu yapı sayesinde UI tarafında her içerik otomatik olarak eşleşir ve gösterilir.
 
-```bash
-ng generate --help
-```
+---
 
-## Building
+## 📖 Lisans
 
-To build the project run:
+Tüm içerikler [MIT Lisansı](LICENSE) kapsamında lisanslanmıştır.  
+**Not:** İçerikler tamamen ChatGPT tarafından oluşturulmuştur, hata veya eksiklikler içerebilir.
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
