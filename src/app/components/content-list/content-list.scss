@@ -1,12 +1,30 @@
 :host {
   flex: 1 1 auto;
   overflow-y: auto;
-  padding: 16px;
+  padding-bottom: 16px;
+  max-height: calc(100vh - 56px);
 }
 
 .search-field {
-  width: 100%;
-  margin-bottom: 24px;
+  padding-top: 12px;
+  margin-left: 16px;
+  margin-right: 16px;
+  z-index: 999;
+  background-color: #ffffff;
+
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+mat-card {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.list {
+  overflow: auto;
+  height: 88%;
 }
 
 .module-block {
