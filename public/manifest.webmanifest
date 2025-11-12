@@ -1,6 +1,6 @@
 {
   "name": "Avturas Akademi",
-  "short_name": "avturas-akademi",
+  "short_name": "Avturas Akademi",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
