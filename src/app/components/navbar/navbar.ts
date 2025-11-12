@@ -10,7 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
   template: `
     <mat-toolbar color="primary">
       <span class="font-bold text-lg cursor-pointer" routerLink="/"
-        >Politik Akademi</span
+        >AVTURAS Akademi</span
       >
     </mat-toolbar>
   `,
