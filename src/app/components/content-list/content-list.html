@@ -9,11 +9,11 @@
   <div *ngFor="let category of groupedContent">
     <mat-card class="category-card">
       <mat-card-header>
-        <mat-card-title>{{ category.category }}</mat-card-title>
+        <mat-card-title>{{ category.category }} </mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <div *ngFor="let mod of category.modules" class="module-block">
-          <h4>{{ mod.module }}</h4>
+          <h4>{{ mod.module }} ({{ mod.items.length }})</h4>
           <ul>
             <li *ngFor="let item of mod.items">
               <a [routerLink]="['/ders', item.slug]"> {{ item.title }} </a>

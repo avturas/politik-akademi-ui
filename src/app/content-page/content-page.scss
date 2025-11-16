@@ -1,12 +1,55 @@
 .content-display {
-    margin: auto;
-    max-width: 1200px;
-    padding: 24px;
-    padding-bottom: 96px;
+  margin: auto;
+  max-width: 1200px;
+  padding: 24px;
+  padding-bottom: 96px;
 }
 
 :host {
-    height: calc(100% - 64px);
-    display: flex;
-    overflow: auto;
+  height: calc(100% - 64px);
+  display: flex;
+  overflow: auto;
+}
+
+button {
+  margin-left: 8px;
+  margin-top: 8px;
+  background-color: white;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 16px;
+}
+
+.nav-divider {
+  margin-top: 2rem;
+}
+
+.lesson-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  padding-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  @media (max-width: 600px) {
+    button {
+      width: 100%;
+    }
+  }
+
+  .nav-spacer {
+    flex-grow: 1;
+  }
+}
+
+.reading-time-info {
+  font-style: italic;
+  color: #666;
+  margin-left: 8px;
 }

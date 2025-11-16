@@ -1,9 +1,16 @@
-<mat-toolbar color="primary" class="footer">
+<mat-toolbar *ngIf="!isDismissed()" color="primary" class="footer">
   <div class="footer-content">
     <span class="footer-text">
       Bu sitedeki tüm içerikler ChatGPT tarafından oluşturulmuştur. ChatGPT
       zaman zaman hata yapabilir. Lütfen önemli bilgileri başka kaynaklardan da
-      kontrol ediniz.
+      kontrol ediniz. <br />
+
+      <span
+        (click)="dismissFooter()"
+        style="cursor: pointer; text-decoration: underline"
+      >
+        Bu bildirimi bir daha gösterme.
+      </span>
     </span>
   </div>
 </mat-toolbar>
