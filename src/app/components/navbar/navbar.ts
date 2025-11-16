@@ -9,15 +9,24 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [MatToolbarModule, MatButtonModule, RouterModule],
   template: `
     <mat-toolbar color="primary">
-      <span class="font-bold text-lg cursor-pointer" routerLink="/"
-        >Avturas Akademi</span
-      >
+      <a routerLink="/">
+        <img
+          src="assets/logo.svg"
+          alt="Avturas Akademi Logo"
+          class="navbar-logo"
+        />
+      </a>
     </mat-toolbar>
   `,
   styles: [
     `
       .cursor-pointer {
         cursor: pointer;
+      }
+
+      img {
+        height: 36px;
+        margin: auto;
       }
     `,
   ],
