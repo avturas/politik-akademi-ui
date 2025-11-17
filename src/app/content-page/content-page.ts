@@ -37,6 +37,9 @@ export class ContentPage implements OnInit, OnDestroy {
     'https://avturas.github.io/politik-akademi-icerik/index.json';
   private routeSub: Subscription | undefined;
 
+  isRead: boolean = false;
+  private readonly READ_LESSONS_KEY = 'readLessons';
+
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
@@ -64,9 +67,6 @@ export class ContentPage implements OnInit, OnDestroy {
     this.routeSub?.unsubscribe();
   }
 
-  /**
-   * Loads content for a specific slug, finds prev/next, and calculates reading time.
-   */
   async loadContent(slug: string) {
     if (this.contentIndex.length === 0) {
       console.error('Content index is empty.');
@@ -77,7 +77,9 @@ export class ContentPage implements OnInit, OnDestroy {
     this.readingTime = null;
     this.previousLesson = null;
     this.nextLesson = null;
-    this.cdr.detectChanges(); // Show loading spinner
+    this.checkReadStatus();
+
+    this.cdr.detectChanges();
 
     const currentIndex = this.contentIndex.findIndex(
       (item) => item.slug === slug
@@ -108,10 +110,6 @@ export class ContentPage implements OnInit, OnDestroy {
     }
   }
 
-  /**
-   * Calculates the estimated reading time in minutes.
-   * @param text The text content to analyze.
-   */
   private calculateReadingTime(text: string): number {
     if (!text) {
       return 0;
@@ -119,5 +117,31 @@ export class ContentPage implements OnInit, OnDestroy {
     const wpm = 225;
     const words = text.trim().split(/\s+/).length;
     return Math.ceil(words / wpm);
+  }
+
+  private getReadLessons(): { [slug: string]: string } {
+    const readLessonsRaw = localStorage.getItem(this.READ_LESSONS_KEY);
+    return readLessonsRaw ? JSON.parse(readLessonsRaw) : {};
+  }
+
+  checkReadStatus(): void {
+    const readLessons = this.getReadLessons();
+    this.isRead = !!readLessons[this.slug];
+  }
+
+  toggleReadStatus(): void {
+    const readLessons = this.getReadLessons();
+
+    if (this.isRead) {
+      delete readLessons[this.slug];
+      this.isRead = false;
+    } else {
+      readLessons[this.slug] = new Date().toISOString();
+      this.isRead = true;
+    }
+
+    localStorage.setItem(this.READ_LESSONS_KEY, JSON.stringify(readLessons));
+
+    this.cdr.detectChanges();
   }
 }

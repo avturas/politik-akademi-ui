@@ -8,6 +8,7 @@ export interface ContentMeta {
   module: string;
   category: string;
   path: string;
+  lastUpdate: string;
 }
 
 @Injectable({ providedIn: 'root' })

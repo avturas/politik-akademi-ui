@@ -29,9 +29,20 @@ export class ContentList implements OnInit {
   contentList: ContentMeta[] = [];
   searchTerm: string = '';
 
+  private readonly READ_LESSONS_KEY = 'readLessons';
+  private readStatusMap: { [slug: string]: string } = {};
+
   constructor(private contentService: ContentService) {}
 
   ngOnInit(): void {
+    try {
+      const readLessonsRaw = localStorage.getItem(this.READ_LESSONS_KEY);
+      this.readStatusMap = readLessonsRaw ? JSON.parse(readLessonsRaw) : {};
+    } catch (e) {
+      console.error('Failed to parse read lessons from localStorage', e);
+      this.readStatusMap = {};
+    }
+
     this.contentService
       .getIndex()
       .subscribe((data) => (this.contentList = data));
@@ -85,5 +96,30 @@ export class ContentList implements OnInit {
         items,
       })),
     }));
+  }
+
+  getLessonStatus(item: ContentMeta): 'read' | 'updated' | 'unread' {
+    const readTimestamp = this.readStatusMap[item.slug];
+
+    if (!readTimestamp) {
+      return 'unread';
+    }
+
+    if (!item.lastUpdate) {
+      return 'read';
+    }
+
+    const lastUpdate = new Date(item.lastUpdate);
+    const readDate = new Date(readTimestamp);
+
+    if (lastUpdate > readDate) {
+      return 'updated';
+    } else {
+      return 'read';
+    }
+  }
+
+  trackBySlug(index: number, item: ContentMeta): string {
+    return item.slug;
   }
 }

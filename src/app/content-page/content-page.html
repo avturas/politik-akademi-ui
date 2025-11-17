@@ -17,6 +17,28 @@
       </article>
     </div>
 
+    <div class="mark-as-read-container">
+      <button
+        *ngIf="isRead"
+        mat-stroked-button
+        color="primary"
+        (click)="toggleReadStatus()"
+      >
+        <mat-icon>remove_done</mat-icon>
+        Okundu İşaretini Kaldır
+      </button>
+
+      <button
+        *ngIf="!isRead"
+        mat-raised-button
+        color="primary"
+        (click)="toggleReadStatus()"
+      >
+        <mat-icon>check_circle</mat-icon>
+        Okundu Olarak İşaretle
+      </button>
+    </div>
+
     <mat-divider
       *ngIf="previousLesson || nextLesson"
       class="nav-divider"

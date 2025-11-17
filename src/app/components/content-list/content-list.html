@@ -15,8 +15,22 @@
         <div *ngFor="let mod of category.modules" class="module-block">
           <h4>{{ mod.module }} ({{ mod.items.length }})</h4>
           <ul>
-            <li *ngFor="let item of mod.items">
-              <a [routerLink]="['/ders', item.slug]"> {{ item.title }} </a>
+            <li
+              *ngFor="let item of mod.items; trackBy: trackBySlug"
+              [ngClass]="getLessonStatus(item)"
+            >
+              <a [routerLink]="['/ders', item.slug]">
+                <mat-icon *ngIf="getLessonStatus(item) === 'read'"
+                  >check_circle_outline</mat-icon
+                >
+                <mat-icon *ngIf="getLessonStatus(item) === 'updated'"
+                  >notification_important</mat-icon
+                >
+                <mat-icon *ngIf="getLessonStatus(item) === 'unread'"
+                  >radio_button_unchecked</mat-icon
+                >
+                {{ item.title }}
+              </a>
             </li>
           </ul>
         </div>
